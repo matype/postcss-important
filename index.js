@@ -1,7 +1,5 @@
 var parse = require('css-annotation').parse
 
-var inspect = require('obj-inspector')
-
 module.exports = function plugin (css, options) {
     options = options || {}
 

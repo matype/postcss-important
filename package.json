@@ -11,7 +11,9 @@
     "url": "git://github.com/morishitter/postcss-important/git"
   },
   "keywords": [
-    "postcss postcss-plugins css"
+    "css",
+    "postcss",
+    "postcss-plugins"
   ],
   "author": "Masaaki Morishita",
   "license": "MIT",

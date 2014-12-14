@@ -4,29 +4,39 @@ module.exports = function plugin (css, options) {
     options = options || {}
 
     var annotations = parse(css)
-    var important = annotations[0].important
+    var importants = []
+    annotations.forEach(function (annotation) {
+        if (annotation.important) {
+            importants.push({
+                important: annotation.important,
+                rule: annotation.rule
+            })
+        }
+    })
 
     return function (root) {
         root.eachRule(function (rule) {
             if (checkImportant(rule)) {
-                if (important === true) {
-                    rule.each(function (child) {
-                        if (child.type === 'decl') {
-                            child.important = true
-                        }
-                    })
-                }
-                else {
-                    rule.each(function (child) {
-                        if (child.type === 'decl') {
-                            important.forEach(function (property) {
-                                if (child.prop === property) {
-                                    child.important = true
-                                }
-                            })
-                        }
-                    })
-                }
+                importants.forEach(function (important) {
+                    if (important.important === true) {
+                        rule.each(function (child) {
+                            if (child.type === 'decl') {
+                                child.important = true
+                            }
+                        })
+                    }
+                    else {
+                        rule.each(function (child) {
+                            if (child.type === 'decl') {
+                                important.important.forEach(function (property) {
+                                    if (child.prop === property) {
+                                        child.important = true
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
             }
         })
     }
@@ -43,3 +53,4 @@ function checkImportant (rule) {
     }
     return false
 }
+

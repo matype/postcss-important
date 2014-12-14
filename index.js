@@ -19,9 +19,13 @@ module.exports = function plugin (css, options) {
             if (checkImportant(rule)) {
                 importants.forEach(function (important) {
                     if (important.important === true) {
-                        rule.each(function (child) {
-                            if (child.type === 'decl') {
-                                child.important = true
+                        root.eachRule(function (rule) {
+                            if (rule.selector === important.rule) {
+                                rule.each(function (child) {
+                                    if (child.type === 'decl') {
+                                        child.important = true
+                                    }
+                                })
                             }
                         })
                     }

@@ -1,6 +1,6 @@
 {
   "name": "postcss-important",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "PostCSS plugin for annotations based `!important`",
   "main": "index.js",
   "scripts": {

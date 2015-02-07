@@ -47,8 +47,8 @@ module.exports = function plugin (css, options) {
 }
 
 function checkImportant (rule) {
-    if (rule.childs) {
-        var children = rule.childs
+    if (rule.nodes) {
+        var children = rule.nodes
         var text = ''
         children.forEach(function (child) {
             if (child.type === 'comment') text = child.text

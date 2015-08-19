@@ -8,7 +8,7 @@ module.exports = function plugin (css, options) {
     annotations.forEach(function (annotation) {
         if (annotation.important) {
             importants.push({
-                important: annotation.important,
+                important: (Array.isArray(annotation.important) ? annotation.important : [annotation.important]),
                 rule: annotation.rule
             })
         }

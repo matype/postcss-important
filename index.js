@@ -15,11 +15,11 @@ module.exports = function plugin (css, options) {
     })
 
     return function (root) {
-        root.eachRule(function (rule) {
+        root.walkRules(function (rule) {
             if (checkImportant(rule)) {
                 importants.forEach(function (important) {
                     if (important.important === true) {
-                        root.eachRule(function (rule) {
+                        root.walkRules(function (rule) {
                             if (rule.selector === important.rule) {
                                 rule.each(function (child) {
                                     if (child.type === 'decl') {
